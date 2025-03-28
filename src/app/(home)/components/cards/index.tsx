@@ -12,14 +12,14 @@ export default function Cards({ products }: { products: IProdutos[] }) {
         >
         <div className="w-full p-2">
           <div className="flex justify-between">
-            <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
+            <h2 className="text-xl font-semibold mb-2 max-[320px]:text-lg">{product.name}</h2>
             <div className="h-full">
               {product.isVegan === 1 && (
-                <Badge variant="outline" className="bg-red-400 p-2 m-0.5 rounded-full"><LeafyGreen color="white"/></Badge>
+                <Badge variant="outline" className="bg-red-400 max-[320px]:p-1 p-2 m-0.5 rounded-full"><LeafyGreen color="white"/></Badge>
               )}
               {
                 product.isGlutenFree === 1 && (
-                  <Badge variant="outline" className="bg-red-400 p-2 m-0.5 rounded-full"><HopOff color="white"/></Badge>
+                  <Badge variant="outline" className="bg-red-400 max-[320px]:p-1 p-2 m-0.5 rounded-full"><HopOff color="white"/></Badge>
                 )
               }
           </div>
