@@ -1,3 +1,4 @@
+import FloatingMenu from "@/components/custom/floating-menu";
 import Header from "@/components/custom/header";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -30,6 +31,7 @@ export default function RootLayout({
       >
         <Header logo="/logo.png"/>
         {children}
+        <FloatingMenu />
       </body>
     </html>
   );
