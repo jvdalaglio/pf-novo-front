@@ -1,11 +1,16 @@
+'use client'
+import Counter from '@/components/custom/counter'
 import { Badge } from '@/components/ui/badge'
-import { IProdutos } from '@/types/products/productsResponse'
+import { CommandItem, useCommand } from '@/contexts/command/CommandContext'
 import { HopOff, LeafyGreen } from 'lucide-react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 
-export default function Cards({ products }: { products: IProdutos[] }) {
-  const router = useRouter()
+export default function CommandList({
+  commandItems
+}: {
+  commandItems: CommandItem[]
+}) {
+  const { updateQuantity } = useCommand()
   const images = [
     'https://receitadaboa.com.br/wp-content/uploads/2024/04/bottom_view_caesar_salad_oval_plate_dark_red_table-23000869-1.jpg',
     'https://veganoporquesim.com.br/wp-content/uploads/2023/06/Risoto-de-Cogumelos.webp',
@@ -13,11 +18,10 @@ export default function Cards({ products }: { products: IProdutos[] }) {
   ]
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
-      {products.map((product: IProdutos) => (
+      {commandItems.map((product: CommandItem) => (
         <div
           key={product.id}
           className="bg-white rounded-lg shadow-md overflow-hidden flex flex-row h-32 transition-all duration-300 hover:shadow-lg"
-          onClick={() => router.push(`/produto/${product.id}`)}
         >
           {/* Imagem - Tamanho fixo à esquerda */}
           <div className="relative w-32 h-full flex-shrink-0">
@@ -65,9 +69,18 @@ export default function Cards({ products }: { products: IProdutos[] }) {
             <p className="text-gray-600 text-xs mb-2 line-clamp-2 break-words">
               {product.description}
             </p>
-            <p className="text-base font-medium mt-auto">
-              R$ {product.price.toFixed(2)}
-            </p>
+            <div className="flex justify-between items-end mt-auto">
+              <p className="text-base font-medium mt-auto">
+                R$ {product.price.toFixed(2)}
+              </p>
+              <Counter
+                size="sm"
+                quantity={product.quantity}
+                setQuantity={(quantity: number) => {
+                  updateQuantity(product.id, quantity)
+                }}
+              />
+            </div>
           </div>
         </div>
       ))}

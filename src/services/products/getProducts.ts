@@ -1,11 +1,10 @@
-import { IDefaultResponse } from "@/types/default/defaultResponse"
-import { IProdutosDTO } from "@/types/products/productsResponse"
+import { IDefaultResponse } from '@/types/default/defaultResponse'
+import { IProdutosDTO } from '@/types/products/productsResponse'
 
 export default async function GetProducts() {
   console.log('env', process.env)
   try {
     const headers = new Headers()
-
 
     const apiUrl = `http://localhost:8000/api/cardapio/produtos`
 

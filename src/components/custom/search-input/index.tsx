@@ -1,16 +1,22 @@
-import { Input } from "@/components/ui/input"
-import React from "react"
+import { Input } from '@/components/ui/input'
+import React from 'react'
 
-export default function SearchInput({ ...props }: React.ComponentProps<"input">) {
+export default function SearchInput({
+  ...props
+}: React.ComponentProps<'input'>) {
   return (
     <div className="flex w-full max-w-sm items-center border border-gray-300 rounded-lg px-2.5 py-1.5 gap-2">
       <SearchIcon className="h-4 w-4 mr-2.5" />
-      <Input type={props.type ?? 'search'} placeholder={props.placeholder ?? 'Pesquisar'} className="w-full border-0" />
+      <Input
+        type={props.type ?? 'search'}
+        placeholder={props.placeholder ?? 'Pesquisar'}
+        className="w-full border-0"
+      />
     </div>
   )
 }
 
-function SearchIcon({ className, ...props }: React.ComponentProps<"svg">) {
+function SearchIcon({ className, ...props }: React.ComponentProps<'svg'>) {
   return (
     <svg
       {...props}
