@@ -1,13 +1,19 @@
 import { cn } from '@/lib/utils'
-import { Minus, Plus } from 'lucide-react'
+import { Minus, Plus, Trash2 } from 'lucide-react'
 
 interface CounterProps {
   quantity: number
   setQuantity: (quantity: number) => void
+  removeItem?: () => void
   size: 'sm' | 'md' | 'lg'
 }
 
-export default function Counter({ quantity, setQuantity, size }: CounterProps) {
+export default function Counter({
+  quantity,
+  setQuantity,
+  size,
+  removeItem
+}: CounterProps) {
   const decrement = () => {
     setQuantity(Math.max(1, quantity - 1))
   }
@@ -18,21 +24,31 @@ export default function Counter({ quantity, setQuantity, size }: CounterProps) {
 
   return (
     <div className="flex items-center gap-4">
-      <button
-        onClick={decrement}
-        className={cn(
-          'p-2 rounded-full bg-gray-100 hover:bg-gray-200',
-          size === 'sm' ? 'p-1' : size === 'md' ? 'p-2' : 'p-3'
-        )}
-        aria-label="Reduzir quantidade"
-      >
-        <Minus
+      {size === 'sm' && quantity === 1 ? (
+        <button
+          onClick={removeItem}
+          className="rounded-full bg-gray-100 hover:bg-gray-200 p-1"
+          aria-label="Reduzir quantidade"
+        >
+          <Trash2 className="h-3 w-3" />
+        </button>
+      ) : (
+        <button
+          onClick={decrement}
           className={cn(
-            'h-4 w-4',
-            size === 'sm' ? 'h-3 w-3' : size === 'md' ? 'h-4 w-4' : 'h-5 w-5'
+            'p-2 rounded-full bg-gray-100 hover:bg-gray-200',
+            size === 'sm' ? 'p-1' : size === 'md' ? 'p-2' : 'p-3'
           )}
-        />
-      </button>
+          aria-label="Reduzir quantidade"
+        >
+          <Minus
+            className={cn(
+              'h-4 w-4',
+              size === 'sm' ? 'h-3 w-3' : size === 'md' ? 'h-4 w-4' : 'h-5 w-5'
+            )}
+          />
+        </button>
+      )}
       <span
         className={cn(
           size === 'sm' ? 'text-md' : size === 'md' ? 'text-lg' : 'text-xl'

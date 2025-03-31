@@ -23,12 +23,15 @@ interface CommandContextType {
   clearCommand: () => void
   totalItems: number
   totalPrice: number
+  openModal: boolean
+  setOpenModal: (value: boolean) => void
 }
 
 const CommandContext = createContext<CommandContextType | undefined>(undefined)
 
 export const CommandProvider = ({ children }: { children: ReactNode }) => {
   const [commandItems, setCommandItems] = useState<CommandItem[]>([])
+  const [openModal, setOpenModal] = useState(false)
   const router = useRouter()
 
   const addToCommand = (item: CommandItem) => {
@@ -48,6 +51,7 @@ export const CommandProvider = ({ children }: { children: ReactNode }) => {
 
       return [...prevItems, { ...item }]
     })
+    router.push('/')
     showToastAddSuccess('Item adicionado à comanda com sucesso!')
   }
 
@@ -69,7 +73,7 @@ export const CommandProvider = ({ children }: { children: ReactNode }) => {
 
   const showToastAddSuccess = (message: string) => {
     toast.success(message, {
-      position: 'bottom-center',
+      position: 'top-center',
       style: {
         background: 'var(--color-red-500)',
         color: '#fff'
@@ -99,7 +103,9 @@ export const CommandProvider = ({ children }: { children: ReactNode }) => {
         removeFromCommand,
         clearCommand,
         totalItems,
-        totalPrice
+        totalPrice,
+        openModal,
+        setOpenModal
       }}
     >
       {children}
