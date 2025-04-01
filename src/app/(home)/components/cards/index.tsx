@@ -6,11 +6,6 @@ import { useRouter } from 'next/navigation'
 
 export default function Cards({ products }: { products: IProdutos[] }) {
   const router = useRouter()
-  const images = [
-    'https://receitadaboa.com.br/wp-content/uploads/2024/04/bottom_view_caesar_salad_oval_plate_dark_red_table-23000869-1.jpg',
-    'https://veganoporquesim.com.br/wp-content/uploads/2023/06/Risoto-de-Cogumelos.webp',
-    'https://laticiniosbomdestino.com.br/2016/wp-content/uploads/2023/03/pizza-marguerita-com-mozzarella-de-bufala-bom-destino-scaled.jpg'
-  ]
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
       {products.map((product: IProdutos) => (
@@ -24,11 +19,12 @@ export default function Cards({ products }: { products: IProdutos[] }) {
             {' '}
             {/* Largura fixa de 8rem (128px) */}
             <Image
-              src={images[product.id - 1]}
+              src={product.image}
               alt={product.name}
               fill
               className="object-cover"
               sizes="(max-width: 640px) 128px, (max-width: 1024px) 128px, 128px"
+              priority
             />
           </div>
 

@@ -1,13 +1,12 @@
 import { ICategoriesDTO } from '@/types/categories/categoriesResponse'
 import { IDefaultResponse } from '@/types/default/defaultResponse'
+import { environment } from '../../../environments'
 
 export default async function GetCategories() {
   try {
     const headers = new Headers()
 
-    const apiUrl = `http://192.168.19.15:8001/api/cardapio/categorias`
-
-    console.log('apiUrl', apiUrl)
+    const apiUrl = `${environment.apiUrl}/categorias`
 
     const requestOptions: RequestInit = {
       method: 'GET',

@@ -13,6 +13,7 @@ export interface CommandItem {
   isVegan?: number
   isGlutenFree?: number
   description: string
+  image: string
 }
 
 interface CommandContextType {

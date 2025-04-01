@@ -1,11 +1,10 @@
 'use client'
-import { useState } from 'react'
 import Counter from '@/components/custom/counter'
-import { AlertDialog, AlertDialogContent } from '@/components/ui/alert-dialog'
 import { Badge } from '@/components/ui/badge'
 import { CommandItem, useCommand } from '@/contexts/command/CommandContext'
 import { HopOff, LeafyGreen } from 'lucide-react'
 import Image from 'next/image'
+import { useState } from 'react'
 import ConfirmModal from '../confirm-modal'
 
 export default function CommandList({
@@ -18,12 +17,6 @@ export default function CommandList({
   const [selectedProductId, setSelectedProductId] = useState<number | null>(
     null
   )
-
-  const images = [
-    'https://receitadaboa.com.br/wp-content/uploads/2024/04/bottom_view_caesar_salad_oval_plate_dark_red_table-23000869-1.jpg',
-    'https://veganoporquesim.com.br/wp-content/uploads/2023/06/Risoto-de-Cogumelos.webp',
-    'https://laticiniosbomdestino.com.br/2016/wp-content/uploads/2023/03/pizza-marguerita-com-mozzarella-de-bufala-bom-destino-scaled.jpg'
-  ]
 
   const handleRemoveClick = (productId: number) => {
     setSelectedProductId(productId)
@@ -53,7 +46,7 @@ export default function CommandList({
           {/* Imagem - Tamanho fixo à esquerda */}
           <div className="relative w-32 h-full flex-shrink-0">
             <Image
-              src={images[product.id - 1]}
+              src={product.image}
               alt={product.name}
               fill
               className="object-cover"
