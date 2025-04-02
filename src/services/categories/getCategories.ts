@@ -1,14 +1,11 @@
-import { ICategoriesDTO } from "@/types/categories/categoriesResponse"
-import { IDefaultResponse } from "@/types/default/defaultResponse"
+import { ICategoriesDTO } from '@/types/categories/categoriesResponse'
+import { IDefaultResponse } from '@/types/default/defaultResponse'
 
 export default async function GetCategories() {
   try {
     const headers = new Headers()
 
-
-    const apiUrl = `http://localhost:8000/api/cardapio/categoria`
-
-    console.log('apiUrl', apiUrl)
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/categorias`
 
     const requestOptions: RequestInit = {
       method: 'GET',

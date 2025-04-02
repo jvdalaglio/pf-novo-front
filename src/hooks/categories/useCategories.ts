@@ -24,7 +24,6 @@ export default function useCategories(): IUseProducts {
       setError('Sem resposta')
       return
     } else if (response.result) {
-      console.log('res', response)
       setCategoreis(transformCategories(response.result))
       setIsLoadingCategories(false)
     } else if(response.msg) {

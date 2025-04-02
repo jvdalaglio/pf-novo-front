@@ -1,11 +1,11 @@
 import { IDefaultResponse } from '@/types/default/defaultResponse'
 import { IProdutoDTO } from '@/types/products/productsResponse'
 
-export default async function GetProducts() {
+export default async function GetProductsById({id}: {id: number}): Promise<IDefaultResponse<IProdutoDTO[]> | null> {
   try {
     const headers = new Headers()
 
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/produtos`
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/produtos/${id}`
 
     const requestOptions: RequestInit = {
       method: 'GET',

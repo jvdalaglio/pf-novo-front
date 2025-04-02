@@ -1,40 +1,63 @@
+'use client'
+import Counter from '@/components/custom/counter'
 import { Badge } from '@/components/ui/badge'
-import { IProduto } from '@/types/products/productsResponse'
+import { CommandItem, useCommand } from '@/contexts/command/CommandContext'
 import { HopOff, LeafyGreen } from 'lucide-react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import CustomConfirmModal from '../confirm-modal'
 
-export default function Cards({ products }: { products: IProduto[] }) {
-  const router = useRouter()
+export default function CommandList({
+  commandItems
+}: {
+  commandItems: CommandItem[]
+}) {
+  const { updateQuantity, removeFromCommand, setOpenModal, openModal } =
+    useCommand()
+  const [selectedProductId, setSelectedProductId] = useState<number | null>(
+    null
+  )
+
+  const handleRemoveClick = (productId: number) => {
+    setSelectedProductId(productId)
+    setOpenModal(true)
+  }
+
+  const handleConfirmRemoval = () => {
+    if (selectedProductId) {
+      removeFromCommand(selectedProductId)
+    }
+    setOpenModal(false)
+  }
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
-      {products.map((product: IProduto) => (
+      <CustomConfirmModal
+        isOpen={openModal}
+        closeModal={() => setOpenModal(false)}
+        confirmButton={handleConfirmRemoval}
+      />
+
+      {commandItems.map((product: CommandItem) => (
         <div
           key={product.id}
           className="bg-white rounded-lg shadow-md overflow-hidden flex flex-row h-32 transition-all duration-300 hover:shadow-lg"
-          onClick={() => router.push(`/produto/${product.id}`)}
         >
           {/* Imagem - Tamanho fixo à esquerda */}
           <div className="relative w-32 h-full flex-shrink-0">
-            {' '}
-            {/* Largura fixa de 8rem (128px) */}
             <Image
               src={product.image}
               alt={product.name}
               fill
               className="object-cover"
               sizes="(max-width: 640px) 128px, (max-width: 1024px) 128px, 128px"
-              priority
             />
           </div>
 
-          {/* Conteúdo - Lado direito com overflow controlado */}
+          {/* Conteúdo - Lado direito */}
           <div className="flex-1 p-3 flex flex-col min-w-0 h-full">
-            {/* Cabeçalho com título que quebra linha */}
             <div className="flex justify-between items-start gap-2 mb-1">
               <h2 className="text-base font-semibold line-clamp-2 break-words">
-                {' '}
-                {/* Permite quebra de linha */}
                 {product.name}
               </h2>
               <div className="flex gap-1 flex-shrink-0">
@@ -57,13 +80,23 @@ export default function Cards({ products }: { products: IProduto[] }) {
               </div>
             </div>
 
-            {/* Descrição */}
             <p className="text-gray-600 text-xs mb-2 line-clamp-2 break-words">
               {product.description}
             </p>
-            <p className="text-base font-medium mt-auto">
-              R$ {product.price.toFixed(2)}
-            </p>
+
+            <div className="flex justify-between items-end mt-auto">
+              <p className="text-base font-medium">
+                R$ {product.price.toFixed(2)}
+              </p>
+              <Counter
+                size="sm"
+                quantity={product.quantity}
+                setQuantity={(quantity: number) => {
+                  updateQuantity(product.id, quantity)
+                }}
+                removeItem={() => handleRemoveClick(product.id)}
+              />
+            </div>
           </div>
         </div>
       ))}
