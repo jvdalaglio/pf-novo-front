@@ -1,4 +1,4 @@
-export interface IProdutosDTO {
+export interface IProdutoDTO {
   ID_PRODUTO: number;
   NOME: string;
   DESCRICAO: string;
@@ -10,7 +10,7 @@ export interface IProdutosDTO {
   PORCOES: boolean;
 }
 
-export interface IProdutos {
+export interface IProduto {
   id: number;
   name: string;
   description: string;

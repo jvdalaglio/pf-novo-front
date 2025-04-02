@@ -1,7 +1,7 @@
-import { IProdutos, IProdutosDTO } from "@/types/products/productsResponse";
+import { IProduto, IProdutoDTO } from "@/types/products/productsResponse";
 
-export function transformProducts(products: IProdutosDTO[]): IProdutos[] {
-  return products.map((product: IProdutosDTO): IProdutos => ({
+export function transformProducts(products: IProdutoDTO[]): IProduto[] {
+  return products.map((product: IProdutoDTO): IProduto => ({
     id: product.ID_PRODUTO,
     name: product.NOME,
     description: product.DESCRICAO,
@@ -14,7 +14,7 @@ export function transformProducts(products: IProdutosDTO[]): IProdutos[] {
   }));
 }
 
-export function tranformProduct(product: IProdutosDTO): IProdutos {
+export function tranformProduct(product: IProdutoDTO): IProduto {
   return {
     id: product.ID_PRODUTO,
     name: product.NOME,

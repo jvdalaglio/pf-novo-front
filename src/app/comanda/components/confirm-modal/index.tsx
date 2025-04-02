@@ -15,7 +15,7 @@ interface ConfirmModalProps {
   confirmButton: () => void
 }
 
-export default function ConfirmModal({
+export default function CustomConfirmModal({
   isOpen,
   closeModal,
   confirmButton

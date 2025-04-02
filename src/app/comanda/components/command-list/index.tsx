@@ -5,7 +5,7 @@ import { CommandItem, useCommand } from '@/contexts/command/CommandContext'
 import { HopOff, LeafyGreen } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
-import ConfirmModal from '../confirm-modal'
+import CustomConfirmModal from '../confirm-modal'
 
 export default function CommandList({
   commandItems
@@ -32,7 +32,7 @@ export default function CommandList({
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
-      <ConfirmModal
+      <CustomConfirmModal
         isOpen={openModal}
         closeModal={() => setOpenModal(false)}
         confirmButton={handleConfirmRemoval}

@@ -2,22 +2,22 @@
 
 import GetProductsById from "@/services/products/getProductById";
 import GetProducts from "@/services/products/getProducts";
-import { IProdutos } from "@/types/products/productsResponse";
+import { IProduto } from "@/types/products/productsResponse";
 import { useEffect, useState } from "react";
 import { tranformProduct, transformProducts } from "./transform";
 
 interface IUseProducts {
-  products: IProdutos[];
-  product: IProdutos | null;
+  products: IProduto[];
+  product: IProduto | null;
   isLoadingProducts: boolean;
   error: string | null;
-  getProductsByCategory: (products: IProdutos[], categoryId: number) => IProdutos[];
+  getProductsByCategory: (products: IProduto[], categoryId: number) => IProduto[];
   getProductsById: (productId: number) => Promise<void>;
 }
 
 export default function useProducts(): IUseProducts {
-  const [products, setProducts] = useState<IProdutos[]>([]);
-  const [product, setProduct] = useState<IProdutos | null>(null);
+  const [products, setProducts] = useState<IProduto[]>([]);
+  const [product, setProduct] = useState<IProduto | null>(null);
   const [isLoadingProducts, setIsLoadingProducts] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -35,7 +35,7 @@ export default function useProducts(): IUseProducts {
     }
   }
 
-  const getProductsByCategory = (products: IProdutos[], categoryId: number): IProdutos[] => {
+  const getProductsByCategory = (products: IProduto[], categoryId: number): IProduto[] => {
     return products.filter(product => product.category === categoryId);
   }
 

@@ -1,12 +1,11 @@
 import { ICategoriesDTO } from '@/types/categories/categoriesResponse'
 import { IDefaultResponse } from '@/types/default/defaultResponse'
-import { environment } from '../../../environments'
 
 export default async function GetCategories() {
   try {
     const headers = new Headers()
 
-    const apiUrl = `${environment.apiUrl}/categorias`
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/categorias`
 
     const requestOptions: RequestInit = {
       method: 'GET',

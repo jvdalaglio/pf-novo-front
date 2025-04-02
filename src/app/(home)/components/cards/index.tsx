@@ -1,14 +1,14 @@
 import { Badge } from '@/components/ui/badge'
-import { IProdutos } from '@/types/products/productsResponse'
+import { IProduto } from '@/types/products/productsResponse'
 import { HopOff, LeafyGreen } from 'lucide-react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
-export default function Cards({ products }: { products: IProdutos[] }) {
+export default function Cards({ products }: { products: IProduto[] }) {
   const router = useRouter()
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
-      {products.map((product: IProdutos) => (
+      {products.map((product: IProduto) => (
         <div
           key={product.id}
           className="bg-white rounded-lg shadow-md overflow-hidden flex flex-row h-32 transition-all duration-300 hover:shadow-lg"

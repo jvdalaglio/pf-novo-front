@@ -1,12 +1,11 @@
 import { IDefaultResponse } from '@/types/default/defaultResponse'
-import { IProdutosDTO } from '@/types/products/productsResponse'
-import { environment } from '../../../environments'
+import { IProdutoDTO } from '@/types/products/productsResponse'
 
-export default async function GetProductsById({id}: {id: number}): Promise<IDefaultResponse<IProdutosDTO[]> | null> {
+export default async function GetProductsById({id}: {id: number}): Promise<IDefaultResponse<IProdutoDTO[]> | null> {
   try {
     const headers = new Headers()
 
-    const apiUrl = `${environment.apiUrl}/produtos/${id}`
+    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/produtos/${id}`
 
     const requestOptions: RequestInit = {
       method: 'GET',
@@ -16,7 +15,7 @@ export default async function GetProductsById({id}: {id: number}): Promise<IDefa
     }
 
     const data = await fetch(apiUrl, requestOptions)
-    const jsonData: IDefaultResponse<IProdutosDTO[]> = await data.json()
+    const jsonData: IDefaultResponse<IProdutoDTO[]> = await data.json()
 
     return jsonData
   } catch (e) {
