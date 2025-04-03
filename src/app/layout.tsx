@@ -3,18 +3,8 @@ import Header from '@/components/custom/header'
 import { Toaster } from '@/components/ui/sonner'
 import { CommandProvider } from '@/contexts/command/CommandContext'
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Suspense } from 'react'
 import './globals.css'
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin']
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin']
-})
 
 export const metadata: Metadata = {
   title: 'Prato Fácil',
@@ -28,15 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`antialiased`}>
         <Header logo="/logo.png" />
         <main className="pb-24">
           <CommandProvider>
-            {' '}
-            {/* Adicione esta div wrapper */}
-            {children}
+            <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
           </CommandProvider>
         </main>
         <FloatingMenu />
