@@ -1,17 +1,13 @@
 import CardDetails from './components/card-details'
 
-type Params = {
-  params: {
-    id: string
-  }
+interface Props {
+  params: Awaited<Promise<{ id: string }>>
 }
 
-export default async function ProductDetails({ params }: Params) {
-  const {id} = await params
-
+export default function ProductDetails({ params }: Props) {
   return (
     <div>
-      <CardDetails key={id} id={+id} />
+      <CardDetails id={Number(params.id)} />
     </div>
   )
 }

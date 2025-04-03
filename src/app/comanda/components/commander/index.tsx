@@ -13,7 +13,6 @@ export default function Commander({
   buttonClick,
   disabledButton = false
 }: CommanderProps) {
-  console.log('disabled', disabledButton)
   return (
     <div className="flex flex-col gap-2 m-2">
       <span className="text-xl font-semibold">
