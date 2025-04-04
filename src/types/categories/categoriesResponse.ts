@@ -1,6 +1,6 @@
 export interface ICategoriesDTO {
-  ID_CATEGORIA: number
-  DESCRICAO: string
+  id_categoria: number
+  descricao: string
 }
 
 export interface ICategories {

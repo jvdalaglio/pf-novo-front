@@ -1,29 +1,21 @@
-import { IProduto, IProdutoDTO } from "@/types/products/productsResponse";
+import { IProduto, IProdutoDTO } from '@/types/products/productsResponse'
 
 export function transformProducts(products: IProdutoDTO[]): IProduto[] {
-  return products.map((product: IProdutoDTO): IProduto => ({
-    id: product.ID_PRODUTO,
-    name: product.NOME,
-    description: product.DESCRICAO,
-    image: product.IMAGEM,
-    price: product.PRECO,
-    isVegan: product.EH_VEGANO,
-    isGlutenFree: product.EH_SEM_GLUTEN,
-    category: product.CATEGORIA,
-    portions: product.PORCOES,
-  }));
+  return products.map(
+    (product: IProdutoDTO): IProduto => tranformProduct(product)
+  )
 }
 
 export function tranformProduct(product: IProdutoDTO): IProduto {
   return {
-    id: product.ID_PRODUTO,
-    name: product.NOME,
-    description: product.DESCRICAO,
-    image: product.IMAGEM,
-    price: product.PRECO,
-    isVegan: product.EH_VEGANO,
-    isGlutenFree: product.EH_SEM_GLUTEN,
-    category: product.CATEGORIA,
-    portions: product.PORCOES,
-  };
+    id: product.id_produto,
+    name: product.nome,
+    description: product.descricao,
+    image: product.imagem,
+    price: product.preco,
+    isVegan: product.eh_vegano,
+    isGlutenFree: product.eh_sem_gluten,
+    category: product.id_categoria,
+    portions: product.porcoes
+  }
 }

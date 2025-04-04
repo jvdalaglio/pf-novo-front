@@ -22,7 +22,7 @@ export default function RootLayout({
         <Header logo="/logo.png" />
         <main className="pb-24">
           <CommandProvider>
-            <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+            <Suspense>{children}</Suspense>
           </CommandProvider>
         </main>
         <FloatingMenu />
