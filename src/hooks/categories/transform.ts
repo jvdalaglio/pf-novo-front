@@ -8,8 +8,8 @@ export default function transformCategories(
 ): ICategories[] {
   return categories.map(
     (category: ICategoriesDTO): ICategories => ({
-      id: category.ID_CATEGORIA,
-      name: category.DESCRICAO
+      id: category.id_categoria,
+      name: category.descricao
     })
   )
 }
